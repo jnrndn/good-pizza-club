@@ -5,16 +5,16 @@ description: Build and publish good-pizza-club
 jobs:
   build:
     docker:
-      - image: cimg/node:14.17.6
+      - image: cimg/node:14.17.6-browsers
     steps:
       - checkout
       - run: npm i
       - run:
           name: "lint code"
           command: "npm run lint"
-      # - run:
-      #     name: "test code"
-      #     command: "npm run test -- --progress false --watch false"
+      - run:
+         name: "test code"
+         command: "npm run test -- --progress false --watch false"
       - run:
           name: "build artifact"
           command: "npm run build -- -c production  --progress false"
