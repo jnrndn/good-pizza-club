@@ -32,6 +32,8 @@ jobs:
 
   deploy:
     working_directory: ~/good-pizza-club
+    docker:
+      - image: cimg/node:14.17.6-browsers
     steps:
       - run:
           name: Firebase Deploy
