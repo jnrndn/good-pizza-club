@@ -3,7 +3,7 @@ version: 2.1
 description: Build and publish good-pizza-club
 
 jobs:
-  build:
+  lint_and_test:
     working_directory: ~/good-pizza-club
     docker:
       - image: cimg/node:14.17.6-browsers
@@ -11,8 +11,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps-
       - run:
           name: Install dependencies
           command: npm install
@@ -26,11 +26,8 @@ jobs:
       # - run:
       #    name: "test code"
       #    command: "npm run test -- --progress false --watch false"
-      - run:
-          name: "Build artifact"
-          command: "npm run build -- -c production  --progress false"
 
-  deploy:
+  build-deploy:
     working_directory: ~/good-pizza-club
     docker:
       - image: cimg/node:14.17.6-browsers
@@ -38,8 +35,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps-
+      - run:
+          name: "Build artifact"
+          command: "npm run build -- -c production  --progress false"
       - run:
           name: Firebase Deploy
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
@@ -48,10 +48,10 @@ jobs:
 workflows:
   build-deploy-workflow:
     jobs:
-      - build
-      - deploy:
+      - lint_and_test
+      - build-deploy:
           requires:
-            - build
+            - lint_and_test
           filters:
             branches:
               only:
