@@ -6,7 +6,7 @@
     "good-pizza-club": {
       "hosting": {
         "qa": [
-          "good-pizza-club__qa"
+          "qa--good-pizza-club"
         ],
         "prod": [
           "good-pizza-club"
