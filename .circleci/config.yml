@@ -25,13 +25,13 @@ jobs:
           name: "Lint code"
           command: "npm run lint"
       - run:
-          name: "test code"
+          name: "Test code"
           command: "npm run test"
       - run:
           name: "E2E test cases"
           command: "./node_modules/.bin/cypress install && npm run cypress:ci"
 
-  build-deploy:
+  build-deploy__prod:
     working_directory: ~/good-pizza-club
     docker:
       - image: cimg/node:14.17.6-browsers
@@ -45,15 +45,38 @@ jobs:
           name: "Build artifact"
           command: "npm run build -- -c production  --progress false"
       - run:
-          name: Firebase Deploy
+          name: Firebase Deploy Prod
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 
+  build-deploy__qa:
+    working_directory: ~/good-pizza-club
+    docker:
+      - image: cimg/node:14.17.6-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps-
+      - run:
+          name: "Build artifact"
+          command: "npm run build -- -c production  --progress false"
+      - run:
+          name: Firebase Deploy QA
+          command: ./node_modules/.bin/firebase hosting:channel:deploy "$DEPLOYMENT_ENV" --token "$FIREBASE_TOKEN" --only hosting
 
 workflows:
   build-deploy-workflow:
     jobs:
       - lint_and_test
-      - build-deploy:
+      - build-deploy__qa:
+          requires:
+            - lint_and_test
+          filters:
+            branches:
+              only:
+                - develop
+      - build-deploy__prod:
           requires:
             - lint_and_test
           filters:
