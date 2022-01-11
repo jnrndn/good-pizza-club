@@ -23,9 +23,12 @@ jobs:
       - run:
           name: "Lint code"
           command: "npm run lint"
-      # - run:
-      #    name: "test code"
-      #    command: "npm run test -- --progress false --watch false"
+      - run:
+          name: "test code"
+          command: "npm run test"
+      - run:
+          name: "E2E test cases"
+          command: "npm run cypress:run"
 
   build-deploy:
     working_directory: ~/good-pizza-club
