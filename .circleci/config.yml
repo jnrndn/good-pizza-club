@@ -46,7 +46,7 @@ jobs:
           command: "npm run build -- -c production  --progress false"
       - run:
           name: Firebase Deploy Prod
-          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting:prod
 
   build-deploy__qa:
     working_directory: ~/good-pizza-club
@@ -63,7 +63,7 @@ jobs:
           command: "npm run build -- -c production  --progress false"
       - run:
           name: Firebase Deploy QA
-          command: ./node_modules/.bin/firebase hosting:channel:deploy "$DEPLOYMENT_ENV" --token "$FIREBASE_TOKEN" --only hosting
+          command: ./node_modules/.bin/firebase hosting:channel:deploy "$DEPLOYMENT_ENV" --only "$DEPLOYMENT_ENV" --token "$FIREBASE_TOKEN"
 
 workflows:
   build-deploy-workflow:
