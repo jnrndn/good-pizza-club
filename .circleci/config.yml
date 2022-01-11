@@ -11,15 +11,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
             - v1-npm-deps-
       - run:
           name: Install dependencies
           command: npm install
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package.json" }}
+          key: v1-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
               - ./node_modules
+              -  ~/.cache
       - run:
           name: "Lint code"
           command: "npm run lint"
