@@ -29,7 +29,7 @@ jobs:
           command: "npm run test"
       - run:
           name: "E2E test cases"
-          command: "npm run cypress:ci"
+          command: "cypress install && npm run cypress:ci"
 
   build-deploy:
     working_directory: ~/good-pizza-club
