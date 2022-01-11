@@ -17,7 +17,7 @@ jobs:
           name: Install dependencies
           command: npm install
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: v1-npm-deps-{{ checksum "package.json" }}
           paths:
               - ./node_modules
       - run:
@@ -26,6 +26,9 @@ jobs:
       - run:
           name: "test code"
           command: "npm run test"
+      - run:
+          commnad: npm start
+          background: true
       - run:
           name: "E2E test cases"
           command: "npm run cypress:run"
