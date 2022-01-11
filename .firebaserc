@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "good-pizza-club"
+  },
+  "targets": {
+    "good-pizza-club": {
+      "hosting": {
+        "qa": [
+          "good-pizza-club__qa"
+        ],
+        "prod": [
+          "good-pizza-club"
+        ]
+      }
+    }
   }
 }
