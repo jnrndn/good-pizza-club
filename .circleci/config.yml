@@ -20,7 +20,7 @@ jobs:
           key: v1-npm-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
               - ./node_modules
-              -  ~/.cache
+              -  ~/.cache/Cypress
       - run:
           name: "Lint code"
           command: "npm run lint"
