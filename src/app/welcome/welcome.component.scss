@@ -1,0 +1,14 @@
+@import './../../styles.scss';
+
+.welcome {
+  background-color: $bg-gray;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__salutation {
+    margin: 0 auto;
+    color: $yellow;
+  }
+}

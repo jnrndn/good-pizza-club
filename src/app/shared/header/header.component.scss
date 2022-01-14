@@ -1,0 +1,53 @@
+@use "sass:map";
+@import './../../../styles.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    margin: 42px auto 0 92px;
+    .logo {
+      width: 50px;
+      height: 50px;
+
+      @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+        width: 121px;
+        height: 121px;
+      }
+    }
+  }
+
+  &__navigation {
+    margin-right: 102px;
+    &-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      .item {
+        list-style-type: none;
+        font-size: 24px;
+        line-height: 29.81px;
+        margin: 30px;
+        color: $titles-gray;
+        cursor: pointer;
+      }
+
+      .active-route {
+        color: $yellow;
+      }
+    }
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
