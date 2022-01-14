@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@400;700&display=swap");
+
+@import "./styles/variables.scss";
+
+// reset styles of all elements to a baseline value to avoid cross-browser differences
+* {
+  font-family: "Rowdies", cursive;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1440px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 80px;
+  line-height: 99px;
+}
+
+h3 {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.header-padding {
+  padding-top: 165px;
+}

@@ -43,7 +43,7 @@ jobs:
             - v1-npm-deps-
       - run:
           name: "Build artifact"
-          command: "npm run build -- -c production  --progress false"
+          command: "npm run build:prod"
       - run:
           name: Firebase Deploy Prod
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
@@ -60,7 +60,7 @@ jobs:
             - v1-npm-deps-
       - run:
           name: "Build artifact"
-          command: "npm run build -- -c development  --progress false"
+          command: "npm run build:qa"
       - run:
           name: Firebase Deploy QA
           command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting:qa
