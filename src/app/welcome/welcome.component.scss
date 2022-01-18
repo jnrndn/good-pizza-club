@@ -1,11 +1,29 @@
+@use "sass:map";
 @import './../../styles.scss';
 
 .welcome {
   background-color: $bg-gray;
   display: flex;
+  flex-direction: column;
   align-content: center;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+
+  @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+    flex-direction: row;
+  }
+
+  &__hero {
+    height: 553px;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+      height: 100%;
+    }
+    &-img {
+     height: 100%;
+    }
+  }
 
   &__salutation {
     margin: 0 auto;

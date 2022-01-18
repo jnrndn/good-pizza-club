@@ -6,7 +6,12 @@
   align-items: center;
 
   &__logo {
-    margin: 42px auto 0 92px;
+    margin: 25px auto 0 25px;
+
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+      margin: 42px auto 0 96px;
+    }
+
     .logo {
       width: 50px;
       height: 50px;
@@ -15,6 +20,13 @@
         width: 121px;
         height: 121px;
       }
+    }
+  }
+
+  .menu {
+    display: none;
+    @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+      display: block;
     }
   }
 
@@ -29,9 +41,17 @@
         list-style-type: none;
         font-size: 24px;
         line-height: 29.81px;
-        margin: 30px;
+        margin: 10px;
         color: $titles-gray;
         cursor: pointer;
+
+        @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+          margin: 20px;
+        }
+
+        @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+          margin: 30px;
+        }
       }
 
       .active-route {
