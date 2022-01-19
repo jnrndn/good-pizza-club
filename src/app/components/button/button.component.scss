@@ -1,0 +1,37 @@
+@import './../../../styles.scss';
+
+.btn {
+  border: none;
+  padding: 0;
+  border-radius: 30px;
+  font-weight: 400;
+  margin: 10px;
+  cursor: pointer;
+
+  &-lg {
+    font-size: 20px;
+    line-height: 25px;
+    width: 224px;
+    height: 56px;
+  }
+
+  &-sm {
+
+  }
+}
+
+.primary {
+  background-color: $red;
+  color: $titles-gray;
+}
+
+.secondary {
+  background-color: $bg-gray;
+  border: 2px solid $red;
+  color: $red;
+}
+
+.success {
+  background-color: $green;
+  color: $titles-gray;
+}
